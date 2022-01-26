@@ -1,12 +1,30 @@
 import { ActionType } from '../action-types';
 
+// TODO: Create central source of reused interfaces
+interface IArtist {
+    name: string;
+    is_headliner: boolean;
+}
+interface IEvent {
+    event_id: number;
+    artists: IArtist[];
+    genres: string[];
+    date: string;
+    start_at: string;
+    tickets_url: string;
+    type: string;
+    venue: {
+        name: string;
+        address: string;
+    };
+}
 interface GetEventsAction {
     type: ActionType.GET_EVENTS;
 }
 
 interface GetEventsSuccessAction {
     type: ActionType.GET_EVENTS_SUCCESS;
-    payload: string[];
+    payload: IEvent[] | [];
 }
 
 interface GetEventsErrorAction {

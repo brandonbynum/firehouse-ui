@@ -1,10 +1,26 @@
 import { Action } from '../actions';
 import { ActionType } from '../action-types';
-
+interface IArtist {
+    name: string;
+    is_headliner: boolean;
+}
+interface IEvent {
+    event_id: number;
+    artists: IArtist[];
+    genres: string[];
+    date: string;
+    start_at: string;
+    tickets_url: string;
+    type: string;
+    venue: {
+        name: string;
+        address: string;
+    };
+}
 interface EventsState {
     loading: boolean;
     error: string | null;
-    data: string[];
+    data: IEvent[];
 }
 
 const initialState = {

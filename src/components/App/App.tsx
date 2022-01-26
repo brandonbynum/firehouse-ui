@@ -4,8 +4,9 @@ import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { store } from '../../state/store';
 
-import Header from '../Header/Header';
+import EventList from '../EventsList/EventList';
 import GenreSelector from '../GenreSelector/GenreSelector';
+import Header from '../Header/Header';
 import MetroSelector from '../MetroSelector/MetroSelector';
 
 import './App.scss';
@@ -23,6 +24,7 @@ const App = () => {
                         <MetroSelector />
                     </Col>
                 </Row>
+                <EventList />
             </div>
         </Provider>
     );
