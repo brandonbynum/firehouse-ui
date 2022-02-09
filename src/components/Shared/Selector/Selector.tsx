@@ -1,31 +1,67 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface IProps {
     buttonTitle: {
         top: string | number;
-        bottom: string | number;
+        bottom: string | number | null | undefined;
     };
+    closeOnSelection: boolean;
+    fetchOptions: any;
     handleOption(name: string): void;
     listOptions: string[];
-    selected: string | string[];
+    selected: string | null;
 }
 
 const Selector = ({
     buttonTitle,
+    closeOnSelection = false,
+    fetchOptions,
     handleOption,
     listOptions,
     selected,
 }: IProps) => {
-    const [showOptions, setShowOptions] = useState(false);
-    const handleShowOptions = () => setShowOptions(!showOptions);
+    const [showOptions, setShowOptions] = useState<boolean>(false);
+    const [wasFetchOptionsCalled, setWasFetchOptionsCalled] =
+        useState<boolean>(false);
+
+    const handleShowOptions = async () => {
+        if (listOptions.length > 0) {
+            if (wasFetchOptionsCalled) {
+                setWasFetchOptionsCalled(false);
+            }
+
+            setShowOptions(!showOptions);
+        } else {
+            await fetchOptions();
+            setWasFetchOptionsCalled(true);
+        }
+    };
+
+    const handleOptionClick = (option: string) => {
+        handleOption(option);
+
+        if (closeOnSelection) {
+            handleShowOptions();
+        }
+    };
+
+    useEffect(() => {
+        fetchOptions();
+    }, []);
+
+    useEffect(() => {
+        if (wasFetchOptionsCalled) {
+            handleShowOptions();
+        }
+    }, [wasFetchOptionsCalled]);
 
     return (
-        <div className="genre-selector">
+        <div className={`${!buttonTitle && 'py-3'}`}>
             <Button
                 style={{ backgroundColor: '#242424', border: 'none' }}
-                className="w-100 px-3 text-center"
+                className={'w-100 px-3 text-center '}
                 onClick={handleShowOptions}
                 variant="secondary"
             >
@@ -51,9 +87,8 @@ const Selector = ({
                                     <ListGroup.Item
                                         className="pointer p-3"
                                         key={`option-${index}`}
-                                        onClick={() => handleOption(name)}
+                                        onClick={() => handleOptionClick(name)}
                                         variant={
-                                            selected.includes(name) ||
                                             selected === name
                                                 ? 'success'
                                                 : 'dark'

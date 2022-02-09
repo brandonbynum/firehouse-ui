@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useActions';
@@ -7,34 +7,26 @@ import Selector from '../Shared/Selector/Selector';
 import './genreSelector.scss';
 
 const GenreSelector = () => {
-    const { data, error, loading } = useTypedSelector((state) => state.genres);
-    const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-    const { getGenres } = useActions();
+    const { getGenres, setGenre } = useActions();
+    const { data, selected } = useTypedSelector((state) => state.genres);
 
     const title = {
-        top: 'Genres',
-        bottom: `selected: ${selectedGenres.length}`,
+        top: 'Genre',
+        bottom: selected ? selected : 'None',
     };
 
-    const handleGenreClick = (genre: string) => {
-        const genreIndex: number = selectedGenres.indexOf(genre);
-        setSelectedGenres(
-            genreIndex === -1
-                ? [genre, ...selectedGenres]
-                : selectedGenres.filter((item) => item !== genre)
-        );
+    const handleGenreClick = (genre_name: string) => {
+        setGenre(genre_name);
     };
-
-    useEffect(() => {
-        getGenres();
-    }, []);
 
     return (
         <Selector
             buttonTitle={title}
+            closeOnSelection={true}
+            fetchOptions={getGenres}
             handleOption={handleGenreClick}
             listOptions={data}
-            selected={selectedGenres}
+            selected={selected}
         />
     );
 };

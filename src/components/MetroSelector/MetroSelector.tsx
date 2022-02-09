@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Button, ListGroup } from 'react-bootstrap';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useTypedSelector } from '../../hooks/useTypedSelector';
@@ -9,31 +8,22 @@ import Selector from '../Shared/Selector/Selector';
 import './metroSelector.scss';
 
 const MetroSelector = () => {
-    const { getMetroAreas } = useActions();
-    const { data, error, loading } = useTypedSelector(
-        (state) => state.metroAreas
-    );
-    const [selectedMetro, setSelectedMetro] = useState('Phoenix');
-    const title = { top: '📍', bottom: selectedMetro };
+    const { getMetroAreas, setMetroArea } = useActions();
+    const { data, selected } = useTypedSelector((state) => state.metroAreas);
+    const title = { top: '📍', bottom: selected ? selected : 'None' };
 
-    const handleSelection = (metroName: string) => {
-        setSelectedMetro(metroName);
+    const handleMetroClick = (metroName: string) => {
+        setMetroArea(metroName);
     };
-
-    useEffect(() => {
-        getMetroAreas();
-    }, []);
-
-    useEffect(() => {
-        console.log(selectedMetro);
-    }, [selectedMetro]);
 
     return (
         <Selector
             buttonTitle={title}
-            handleOption={handleSelection}
+            closeOnSelection={true}
+            fetchOptions={getMetroAreas}
+            handleOption={handleMetroClick}
             listOptions={data}
-            selected={selectedMetro}
+            selected={selected}
         />
     );
 };
