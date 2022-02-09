@@ -5,11 +5,10 @@ import './Header.scss';
 
 const Header = () => {
     return (
-        <Navbar className="header">
+        <Navbar className="header bg-primary">
             <Container>
                 <Navbar.Brand className="mx-auto" href="#home">
                     <div className="text-center">🔥🏠</div>
-                    {/* <div className="text-light">[fire]HOUSE</div> */}
                 </Navbar.Brand>
             </Container>
         </Navbar>
