@@ -1,10 +1,16 @@
 import { Action } from '../actions';
 import { ActionType } from '../action-types';
+
+export interface EventsState {
+    loading: boolean;
+    error: string | null;
+    data: IEvent[];
+}
 interface IArtist {
     name: string;
     is_headliner: boolean;
 }
-interface IEvent {
+export interface IEvent {
     event_id: number;
     artists: IArtist[];
     genres: string[];
@@ -16,11 +22,6 @@ interface IEvent {
         name: string;
         address: string;
     };
-}
-interface EventsState {
-    loading: boolean;
-    error: string | null;
-    data: IEvent[];
 }
 
 const initialState = {

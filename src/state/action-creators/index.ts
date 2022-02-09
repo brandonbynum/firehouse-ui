@@ -3,7 +3,10 @@ import { Dispatch } from 'redux';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 
-export const getEvents = (genre: string = '', metroArea: string = '') => {
+export const getEvents = (
+    genre: string | null = null,
+    metroArea: string | null = null
+) => {
     return async (dispatch: Dispatch<Action>) => {
         dispatch({
             type: ActionType.GET_EVENTS,
@@ -63,7 +66,7 @@ export const getGenres = () => {
 export const getMetroAreas = () => {
     return async (dispatch: Dispatch<Action>) => {
         dispatch({
-            type: ActionType.GET_METRO_AREA,
+            type: ActionType.GET_METRO_AREAS,
         });
 
         try {
@@ -77,12 +80,52 @@ export const getMetroAreas = () => {
             );
 
             dispatch({
-                type: ActionType.GET_METRO_AREA_SUCCESS,
+                type: ActionType.GET_METRO_AREAS_SUCCESS,
                 payload: names,
             });
         } catch (err: any) {
             dispatch({
-                type: ActionType.GET_METRO_AREA_ERROR,
+                type: ActionType.GET_METRO_AREAS_ERROR,
+                payload: err.message,
+            });
+        }
+    };
+};
+
+export const setMetroArea = (metroArea: string = '') => {
+    return (dispatch: Dispatch<Action>) => {
+        dispatch({
+            type: ActionType.SET_METRO_AREA,
+        });
+
+        try {
+            dispatch({
+                type: ActionType.SET_METRO_AREA_SUCCESS,
+                payload: metroArea,
+            });
+        } catch (err: any) {
+            dispatch({
+                type: ActionType.SET_METRO_AREA_ERROR,
+                payload: err.message,
+            });
+        }
+    };
+};
+
+export const setGenre = (genre: string = '') => {
+    return (dispatch: Dispatch<Action>) => {
+        dispatch({
+            type: ActionType.SET_GENRE,
+        });
+
+        try {
+            dispatch({
+                type: ActionType.SET_GENRE_SUCCESS,
+                payload: genre,
+            });
+        } catch (err: any) {
+            dispatch({
+                type: ActionType.SET_GENRE_ERROR,
                 payload: err.message,
             });
         }

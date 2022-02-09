@@ -1,30 +1,13 @@
 import { ActionType } from '../action-types';
 
 // TODO: Create central source of reused interfaces
-interface IArtist {
-    name: string;
-    is_headliner: boolean;
-}
-interface IEvent {
-    event_id: number;
-    artists: IArtist[];
-    genres: string[];
-    date: string;
-    start_at: string;
-    tickets_url: string;
-    type: string;
-    venue: {
-        name: string;
-        address: string;
-    };
-}
 interface GetEventsAction {
     type: ActionType.GET_EVENTS;
 }
 
 interface GetEventsSuccessAction {
     type: ActionType.GET_EVENTS_SUCCESS;
-    payload: IEvent[] | [];
+    payload: [];
 }
 
 interface GetEventsErrorAction {
@@ -46,17 +29,45 @@ interface GetGenresErrorAction {
     payload: string;
 }
 
-interface GetMetroAreaAction {
-    type: ActionType.GET_METRO_AREA;
+interface GetMetroAreasAction {
+    type: ActionType.GET_METRO_AREAS;
 }
 
-interface GetMetroAreaSuccessAction {
-    type: ActionType.GET_METRO_AREA_SUCCESS;
+interface GetMetroAreasSuccessAction {
+    type: ActionType.GET_METRO_AREAS_SUCCESS;
     payload: string[];
 }
 
-interface GetMetroAreaErrorAction {
-    type: ActionType.GET_METRO_AREA_ERROR;
+interface GetMetroAreasErrorAction {
+    type: ActionType.GET_METRO_AREAS_ERROR;
+    payload: string;
+}
+
+interface SetGenreAction {
+    type: ActionType.SET_GENRE;
+}
+
+interface SetGenreSuccessAction {
+    type: ActionType.SET_GENRE_SUCCESS;
+    payload: string;
+}
+
+interface SetGenreErrorAction {
+    type: ActionType.SET_GENRE_ERROR;
+    payload: string;
+}
+
+interface SetMetroAreaAction {
+    type: ActionType.SET_METRO_AREA;
+}
+
+interface SetMetroAreaSuccessAction {
+    type: ActionType.SET_METRO_AREA_SUCCESS;
+    payload: string;
+}
+
+interface SetMetroAreaErrorAction {
+    type: ActionType.SET_METRO_AREA_ERROR;
     payload: string;
 }
 
@@ -67,6 +78,12 @@ export type Action =
     | GetGenresAction
     | GetGenresSuccessAction
     | GetGenresErrorAction
-    | GetMetroAreaAction
-    | GetMetroAreaSuccessAction
-    | GetMetroAreaErrorAction;
+    | GetMetroAreasAction
+    | GetMetroAreasSuccessAction
+    | GetMetroAreasErrorAction
+    | SetGenreAction
+    | SetGenreSuccessAction
+    | SetGenreErrorAction
+    | SetMetroAreaAction
+    | SetMetroAreaSuccessAction
+    | SetMetroAreaErrorAction;

@@ -2,15 +2,17 @@ import { Action } from '../actions';
 import { ActionType } from '../action-types';
 
 interface MetroAreaState {
-    loading: boolean;
-    error: string | null;
     data: string[];
+    error: string | null;
+    loading: boolean;
+    selected: string | null;
 }
 
 const initialState = {
-    loading: false,
-    error: null,
     data: [],
+    error: null,
+    loading: false,
+    selected: null,
 };
 
 const metroAreaReducer = (
@@ -18,12 +20,47 @@ const metroAreaReducer = (
     action: Action
 ): MetroAreaState => {
     switch (action.type) {
-        case ActionType.GET_METRO_AREA:
-            return { loading: true, error: null, data: [] };
-        case ActionType.GET_METRO_AREA_SUCCESS:
-            return { loading: false, error: null, data: action.payload };
-        case ActionType.GET_METRO_AREA_ERROR:
-            return { loading: false, error: action.payload, data: [] };
+        case ActionType.GET_METRO_AREAS:
+            return {
+                ...state,
+                data: [],
+                error: null,
+                loading: true,
+            };
+        case ActionType.GET_METRO_AREAS_SUCCESS:
+            return {
+                ...state,
+                data: action.payload,
+                error: null,
+                loading: false,
+            };
+        case ActionType.GET_METRO_AREAS_ERROR:
+            return {
+                ...state,
+                data: [],
+                error: action.payload,
+                loading: false,
+            };
+        case ActionType.SET_METRO_AREA:
+            return {
+                ...state,
+                error: null,
+                loading: false,
+            };
+        case ActionType.SET_METRO_AREA_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                selected: action.payload,
+            };
+        case ActionType.SET_METRO_AREA_ERROR:
+            return {
+                ...state,
+                error: null,
+                loading: false,
+                selected: null,
+            };
         default:
             return state;
     }
