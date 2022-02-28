@@ -1,6 +1,14 @@
-$primary: #242424;
-$secondary: #1c1c1c;
-$light: #2d2d2e;
-$dark: #141414;
+$primary: #F0ECE3;
+$secondary: #DFD3C3;
+$light: #2D2D2D;
+$light-dark: #242424;
+$dark: #1C1C1C;
 
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "light": $light,
+    "light-dark": $light-dark,
+    "dark": $dark,
+);
 @import '~bootstrap/scss/bootstrap.scss';

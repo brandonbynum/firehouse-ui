@@ -2,21 +2,20 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useActions } from '../../hooks/useActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { SearchOutlined } from '@ant-design/icons';
 
 const SearchButton = () => {
     const { getEvents } = useActions();
-    const genre = useTypedSelector((state) => state.genres.selected);
     const metroArea = useTypedSelector((state) => state.metroAreas.selected);
-    const isDisabled = !genre || !metroArea;
+    const isDisabled = !metroArea;
 
     return (
         <Button
-            className="w-100 mb-3 bg-light"
+            className="w-100 bg-light-dark text-primary  cursor-pointer"
             disabled={isDisabled}
-            onClick={() => getEvents(genre, metroArea)}
-            variant="secondary"
+            onClick={() => getEvents(metroArea)}
         >
-            Search
+            <SearchOutlined style={{ fontSize: '150%' }} />
         </Button>
     );
 };

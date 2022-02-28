@@ -3,10 +3,7 @@ import { Dispatch } from 'redux';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 
-export const getEvents = (
-    genre: string | null = null,
-    metroArea: string | null = null
-) => {
+export const getEvents = (metroArea: string | null = null) => {
     return async (dispatch: Dispatch<Action>) => {
         dispatch({
             type: ActionType.GET_EVENTS,
@@ -16,7 +13,6 @@ export const getEvents = (
             const url: string = process.env.REACT_APP_API_URL + 'events';
             const { data } = await axios.get(url, {
                 params: {
-                    genre: genre,
                     metro: metroArea,
                 },
             });

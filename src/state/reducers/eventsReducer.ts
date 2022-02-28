@@ -12,16 +12,12 @@ interface IArtist {
 }
 export interface IEvent {
     event_id: number;
-    artists: IArtist[];
-    genres: string[];
+    artist: IArtist;
+    genre: string[];
     date: string;
-    start_at: string;
     tickets_url: string;
     type: string;
-    venue: {
-        name: string;
-        address: string;
-    };
+    venue: string;
 }
 
 const initialState = {

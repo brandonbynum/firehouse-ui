@@ -6,9 +6,9 @@ import './eventList.scss';
 
 const EventList = () => {
     const { data, loading, error } = useTypedSelector((state) => state.events);
-
+    console.log(data);
     return (
-        <Table className="events-list rounded bg-light">
+        <Table id="event-list" className="rounded bg-light">
             <tbody>
                 {data.length > 0 &&
                     data.map((event, eventIndex: number) => {
@@ -18,27 +18,13 @@ const EventList = () => {
                                 key={`event-${eventIndex}`}
                             >
                                 <td className="p-3">
-                                    {data[eventIndex].artists.map(
-                                        (artist, artistIndex: number) => {
-                                            return (
-                                                <div
-                                                    key={`${event.event_id}-artist-${artistIndex}`}
-                                                >
-                                                    {artist.is_headliner ? (
-                                                        <h3>{artist.name}</h3>
-                                                    ) : (
-                                                        <small>
-                                                            {artist.name}
-                                                        </small>
-                                                    )}
-                                                </div>
-                                            );
-                                        }
-                                    )}
-                                </td>
-                                <td className="p-3">
-                                    <div>{event.date}</div>
-                                    <div>{event.venue.name}</div>
+                                    <div>{event.artist.name}</div>
+                                    <div className="d-flex justify-content-between">
+                                        <small className="">{event.date}</small>
+                                        <small className="">
+                                            {event.venue}
+                                        </small>
+                                    </div>
                                 </td>
                             </tr>
                         );

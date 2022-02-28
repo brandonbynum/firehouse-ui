@@ -6,7 +6,7 @@ const Loader = () => {
     return (
         <React.Fragment>
             {isLoading && (
-                <div id="loader" className="text-white">
+                <div id="loader" className="text-white text-center my-auto">
                     Loading
                 </div>
             )}

@@ -3,10 +3,7 @@ import { Button, ListGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface IProps {
-    buttonTitle: {
-        top: string | number;
-        bottom: string | number | null | undefined;
-    };
+    buttonTitle: string | JSX.Element;
     closeOnSelection: boolean;
     fetchOptions: any;
     handleOption(name: string): void;
@@ -60,20 +57,21 @@ const Selector = ({
     return (
         <div className={`${!buttonTitle && 'py-3'}`}>
             <Button
-                style={{ backgroundColor: '#242424', border: 'none' }}
-                className={'w-100 px-3 text-center '}
+                className={
+                    'w-100 px-3 bg-light-dark text-center text-primary border-none'
+                }
                 onClick={handleShowOptions}
-                variant="secondary"
             >
-                <div className="mb-0">{buttonTitle.top}</div>
-                <small className="text-light-dark">{buttonTitle.bottom}</small>
+                <div className={`mb-0 ${selected ? 'py-2' : 'py-1'}`}>
+                    {selected ? selected : buttonTitle}
+                </div>
             </Button>
 
             {showOptions && (
                 <div id="list">
                     <div className="d-flex justify-content-end p-4 mb-3">
                         <Button
-                            className="close-list"
+                            className="close-list bg-light text-primary"
                             onClick={handleShowOptions}
                         >
                             &times;
@@ -85,7 +83,7 @@ const Selector = ({
                             {listOptions.map((name: string, index: number) => {
                                 return (
                                     <ListGroup.Item
-                                        className="pointer p-3"
+                                        className="pointer p-3 bg-light text-primary"
                                         key={`option-${index}`}
                                         onClick={() => handleOptionClick(name)}
                                         variant={
