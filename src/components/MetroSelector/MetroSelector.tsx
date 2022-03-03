@@ -6,8 +6,6 @@ import { useActions } from '../../hooks/useActions';
 import Selector from '../Shared/Selector/Selector';
 import { EnvironmentOutlined } from '@ant-design/icons';
 
-import './metroSelector.scss';
-
 const MetroSelector = () => {
     const { getMetroAreas, setMetroArea } = useActions();
     const { data, selected } = useTypedSelector((state) => state.metroAreas);

@@ -15,7 +15,6 @@ const useIsLoading = () => {
             const stateValue = state[keyName as keyof typeof state];
 
             if (stateValue?.loading) {
-                console.log(stateValue);
                 loadingCount += 1;
             }
         });

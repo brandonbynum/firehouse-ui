@@ -68,7 +68,6 @@ export const getMetroAreas = () => {
         try {
             const url: string = process.env.REACT_APP_API_URL + 'metropolitans';
             const { data } = await axios.get(url);
-            console.log(data.data);
             const names = data.data.map(
                 (metroArea: { id: number; name: string }) => {
                     return metroArea.name;
