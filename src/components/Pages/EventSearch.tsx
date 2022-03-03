@@ -6,31 +6,74 @@ import SearchButton from '../SearchButton/SearchButton';
 
 import './eventSearch.scss';
 
+interface IHeightProps {
+    offsetHeight: number;
+    marginBottom: number;
+    marginTop: number;
+}
+interface IRefElement {
+    current: {
+        offsetHeight: number;
+        style: {
+            marginTop: number;
+            marginBottom: number;
+        };
+    };
+}
+
 const EventSearch = () => {
-    const [eventListHeight, setEventListHeight] = useState(0);
-    const searchRef = useRef<any>(null);
+    const [eventContainerHeight, setEventContainerHeight] = useState(0);
+    const containerRef = useRef<any>();
+    const headerHeight = 56;
+    const searchButtonRef = useRef<any>();
+    const metroSelectorButtonRef = useRef<any>();
 
-    // TODO: Hook to get page-content margin height
-    // TODO: Hook to get metro selector full height (offsetHeight + marginTop + marginBottom)
-    // TODO: Hook to get heder height
-    useEffect(() => {
-        console.log(`searchOffsetHeight: ${searchRef.current.offsetHeight}`);
-        const searchElemHeight = searchRef.current.offsetHeight;
-        const metroSelectorHeight = 0;
-        const pageContentHeight = 0;
-        const newEventListHeight =
+    const getRefElementHeight = (element: IRefElement) => {
+        return (
+            element.current.offsetHeight +
+            element.current.style.marginTop +
+            element.current.style.marginBottom
+        );
+    };
+
+    const calculateEventContainerHeight = () => {
+        console.log(`window.innerHeight: ${window.innerHeight}`);
+        const containerOffsetTop = containerRef.current.offsetTop;
+        console.log(`containerOffsetTop: ${containerOffsetTop}`);
+        console.dir(containerRef.current);
+
+        const metroSelectorButtonHeight = getRefElementHeight(
+            metroSelectorButtonRef
+        );
+        console.log(`metroSelectorButtonHeight: ${metroSelectorButtonHeight}`);
+        console.dir(metroSelectorButtonRef.current);
+
+        const searchButtonHeight = getRefElementHeight(searchButtonRef);
+        console.log(`searchButtonHeight: ${searchButtonHeight}`);
+        console.dir(searchButtonRef.current);
+
+        // Page height - header height - metro button total height - search button height
+        const newEventContainerHeight =
             window.innerHeight -
-            searchElemHeight -
-            metroSelectorHeight -
-            pageContentHeight;
+            headerHeight -
+            containerOffsetTop -
+            metroSelectorButtonHeight -
+            searchButtonHeight;
 
-        console.log(newEventListHeight);
-        setEventListHeight(newEventListHeight);
-    }, [searchRef.current]);
+        console.log(`newEventContainerHeight: ${newEventContainerHeight}`);
+        setEventContainerHeight(newEventContainerHeight);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', () => {
+            calculateEventContainerHeight();
+        });
+        calculateEventContainerHeight();
+    }, []);
 
     return (
-        <div className="">
-            <div className="position-static mb-3">
+        <div ref={containerRef}>
+            <div className="position-static mb-3" ref={metroSelectorButtonRef}>
                 <MetroSelector />
             </div>
 
@@ -41,8 +84,8 @@ const EventSearch = () => {
             <div
                 className="event-container mb-3"
                 style={{
-                    // height: `${eventListHeight}`
-                    height: '600px',
+                    height: `${eventContainerHeight}px`,
+                    //height: '600px',
                 }}
             >
                 <EventList />
@@ -53,7 +96,7 @@ const EventSearch = () => {
                     - Show tooltip on hover if button is disabled 
                     - If clicked while disabled, highlight metro border red
             */}
-            <div className="sticky-bottom" ref={searchRef}>
+            <div className="sticky-bottom" ref={searchButtonRef}>
                 <SearchButton />
             </div>
         </div>
