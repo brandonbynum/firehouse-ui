@@ -8,12 +8,13 @@ export interface EventsState {
 }
 interface IArtist {
     name: string;
-    is_headliner: boolean;
+    headliner: boolean;
 }
 export interface IEvent {
     event_id: number;
+    event_name: string;
     artist: IArtist;
-    genre: string[];
+    genres: string[];
     date: string;
     tickets_url: string;
     type: string;
