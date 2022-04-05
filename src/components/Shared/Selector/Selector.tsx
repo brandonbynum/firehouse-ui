@@ -90,14 +90,14 @@ const Selector = ({
                             {listOptions.map((name: string, index: number) => {
                                 return (
                                     <ListGroup.Item
-                                        className="pointer p-3 bg-light text-primary"
+                                        className={`pointer p-3 text-primary
+                                            ${
+                                                selected === name
+                                                    ? 'bg-dark'
+                                                    : 'bg-light'
+                                            }`}
                                         key={`option-${index}`}
                                         onClick={() => handleOptionClick(name)}
-                                        variant={
-                                            selected === name
-                                                ? 'success'
-                                                : 'dark'
-                                        }
                                     >
                                         {name}
                                     </ListGroup.Item>
