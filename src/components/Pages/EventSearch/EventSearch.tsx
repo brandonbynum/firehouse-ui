@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import EventList from '../EventsList/EventList';
-import MetroSelector from '../MetroSelector/MetroSelector';
-import SearchButton from '../SearchButton/SearchButton';
+import { useActions } from '../../../hooks/useActions';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
+
+import EventList from '../../EventsList/EventList';
+import MetroSelector from '../../MetroSelector/MetroSelector';
 
 import './eventSearch.scss';
 
@@ -22,10 +24,12 @@ interface IRefElement {
 }
 
 const EventSearch = () => {
+    const { getEvents } = useActions();
+    const { selected } = useTypedSelector((state) => state.metroAreas);
+
     const [eventContainerHeight, setEventContainerHeight] = useState(0);
     const containerRef = useRef<any>();
     const headerHeight = 56;
-    const searchButtonRef = useRef<any>();
     const metroSelectorButtonRef = useRef<any>();
 
     const getRefElementHeight = (element: IRefElement) => {
@@ -37,30 +41,18 @@ const EventSearch = () => {
     };
 
     const calculateEventContainerHeight = () => {
-        console.log(`window.innerHeight: ${window.innerHeight}`);
         const containerOffsetTop = containerRef.current.offsetTop;
-        console.log(`containerOffsetTop: ${containerOffsetTop}`);
-        console.dir(containerRef.current);
-
         const metroSelectorButtonHeight = getRefElementHeight(
             metroSelectorButtonRef
         );
-        console.log(`metroSelectorButtonHeight: ${metroSelectorButtonHeight}`);
-        console.dir(metroSelectorButtonRef.current);
 
-        const searchButtonHeight = getRefElementHeight(searchButtonRef);
-        console.log(`searchButtonHeight: ${searchButtonHeight}`);
-        console.dir(searchButtonRef.current);
-
-        // Page height - header height - metro button total height - search button height
+        // Page height - header height - metro button total height
         const newEventContainerHeight =
             window.innerHeight -
             headerHeight -
             containerOffsetTop -
-            metroSelectorButtonHeight -
-            searchButtonHeight;
+            metroSelectorButtonHeight;
 
-        console.log(`newEventContainerHeight: ${newEventContainerHeight}`);
         setEventContainerHeight(newEventContainerHeight);
     };
 
@@ -70,6 +62,12 @@ const EventSearch = () => {
         });
         calculateEventContainerHeight();
     }, []);
+
+    useEffect(() => {
+        if (selected) {
+            getEvents(selected);
+        }
+    }, [selected]);
 
     return (
         <div ref={containerRef}>
@@ -89,15 +87,6 @@ const EventSearch = () => {
                 }}
             >
                 <EventList />
-            </div>
-
-            {/* 
-                TODO: 
-                    - Show tooltip on hover if button is disabled 
-                    - If clicked while disabled, highlight metro border red
-            */}
-            <div className="sticky-bottom" ref={searchButtonRef}>
-                <SearchButton />
             </div>
         </div>
     );

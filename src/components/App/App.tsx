@@ -8,7 +8,7 @@ import { store } from '../../state/store';
 
 // Components
 import Error from '../Shared/Error/Error';
-import EventSearch from '../Pages/EventSearch';
+import EventSearch from '../Pages/EventSearch/EventSearch';
 import Header from '../Header/Header';
 import Loader from '../Shared/Loader/Loader';
 
