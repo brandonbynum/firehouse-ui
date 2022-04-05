@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { Badge, Button, Col, Row, Table } from 'react-bootstrap';
+import React from 'react';
+import { Badge, Col, Row } from 'react-bootstrap';
 import { TagsOutlined } from '@ant-design/icons';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './eventList.scss';
 
 const EventList = () => {
-    const { data, loading, error } = useTypedSelector((state) => state.events);
+    const { data } = useTypedSelector((state) => state.events);
     return (
         <div id="event-list" className="rounded-4">
             {data.length > 0 &&

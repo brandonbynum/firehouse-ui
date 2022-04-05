@@ -8,11 +8,6 @@ import MetroSelector from '../../MetroSelector/MetroSelector';
 
 import './eventSearch.scss';
 
-interface IHeightProps {
-    offsetHeight: number;
-    marginBottom: number;
-    marginTop: number;
-}
 interface IRefElement {
     current: {
         offsetHeight: number;
