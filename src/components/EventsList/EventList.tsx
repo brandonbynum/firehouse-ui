@@ -6,11 +6,16 @@ import './eventList.scss';
 
 const EventList = () => {
     const { data } = useTypedSelector((state) => state.events);
+    const { selected } = useTypedSelector((state) => state.metroAreas);
+
     return (
         <div id="event-list" className="rounded-4">
-            {data.length > 0 &&
+            {selected && data.length === 0 ? (
+                <div className="w-100 text-primary text-center">
+                    No events found
+                </div>
+            ) : (
                 data.map((event, eventIndex: number) => {
-                    console.dir(event);
                     return (
                         <div
                             className="text-white border-dark mb-3 p-3 bg-light"
@@ -93,7 +98,8 @@ const EventList = () => {
                             </Row>
                         </div>
                     );
-                })}
+                })
+            )}
         </div>
     );
 };
