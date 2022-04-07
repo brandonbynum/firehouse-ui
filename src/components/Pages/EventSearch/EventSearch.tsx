@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { useActions } from '../../../hooks/useActions';
+import useIsLoading from '../../../hooks/useIsLoading';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 
 import EventList from '../../EventsList/EventList';
@@ -21,7 +22,7 @@ interface IRefElement {
 const EventSearch = () => {
     const { getEvents } = useActions();
     const { selected } = useTypedSelector((state) => state.metroAreas);
-
+    const loading = useIsLoading();
     const [eventContainerHeight, setEventContainerHeight] = useState(0);
     const containerRef = useRef<any>();
     const headerHeight = 56;
@@ -74,6 +75,7 @@ const EventSearch = () => {
                 TODO: Add button to scroll back to top of list
                 TODO: Gradient to overflow visibility on Y axis
             */}
+
             <div
                 className="event-container mb-3"
                 style={{
@@ -81,7 +83,7 @@ const EventSearch = () => {
                     //height: '600px',
                 }}
             >
-                <EventList />
+                {!loading && <EventList />}
             </div>
         </div>
     );
