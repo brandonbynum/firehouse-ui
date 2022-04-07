@@ -90,7 +90,7 @@ const Selector = ({
                             {listOptions.map((name: string, index: number) => {
                                 return (
                                     <ListGroup.Item
-                                        className={`pointer p-3 text-primary
+                                        className={`pointer p-3 text-primary text-center
                                             ${
                                                 selected === name
                                                     ? 'bg-dark'
