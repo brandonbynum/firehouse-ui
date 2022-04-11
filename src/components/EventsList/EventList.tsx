@@ -1,7 +1,7 @@
 import React from 'react';
 import { Badge, Col, Row } from 'react-bootstrap';
 import { TagsOutlined } from '@ant-design/icons';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useTypedSelector } from 'hooks/useTypedSelector';
 import './eventList.scss';
 
 const EventList = () => {

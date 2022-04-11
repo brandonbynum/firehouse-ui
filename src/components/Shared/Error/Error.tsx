@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert } from 'react-bootstrap';
 
-import { useErrorMessages } from '../../../hooks/useErrorMessages';
+import { useErrorMessages } from 'hooks/useErrorMessages';
 
 const Error = () => {
     const errors = useErrorMessages();

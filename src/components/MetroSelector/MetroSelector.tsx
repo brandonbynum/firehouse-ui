@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { useActions } from '../../hooks/useActions';
-import Selector from '../Shared/Selector/Selector';
+import { useTypedSelector } from 'hooks/useTypedSelector';
+import { useActions } from 'hooks/useActions';
+import Selector from 'components/Shared/Selector/Selector';
 import { EnvironmentOutlined } from '@ant-design/icons';
 
 const MetroSelector = () => {

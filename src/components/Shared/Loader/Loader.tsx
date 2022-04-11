@@ -1,7 +1,7 @@
 import React from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 
-import useIsLoading from '../../../hooks/useIsLoading';
+import useIsLoading from 'hooks/useIsLoading';
 
 const Loader = () => {
     const isLoading = useIsLoading();

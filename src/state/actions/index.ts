@@ -1,4 +1,4 @@
-import { ActionType } from '../action-types';
+import { ActionType } from 'state/action-types';
 
 // TODO: Create central source of reused interfaces
 interface GetEventsAction {

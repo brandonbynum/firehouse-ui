@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { useActions } from '../../../hooks/useActions';
-import useIsLoading from '../../../hooks/useIsLoading';
-import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { useActions } from 'hooks/useActions';
+import useIsLoading from 'hooks/useIsLoading';
+import { useTypedSelector } from 'hooks/useTypedSelector';
 
-import EventList from '../../EventsList/EventList';
-import MetroSelector from '../../MetroSelector/MetroSelector';
+import EventList from 'components/EventsList/EventList';
+import MetroSelector from 'components/MetroSelector/MetroSelector';
 
 import './eventSearch.scss';
 

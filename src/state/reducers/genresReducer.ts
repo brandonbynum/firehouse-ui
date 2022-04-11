@@ -1,5 +1,5 @@
-import { Action } from '../actions';
-import { ActionType } from '../action-types';
+import { Action } from 'state/actions';
+import { ActionType } from 'state/action-types';
 
 interface GenresState {
     loading: boolean;

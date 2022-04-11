@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
-import { ActionType } from '../action-types';
-import { Action } from '../actions';
+import { ActionType } from 'state/action-types';
+import { Action } from 'state/actions';
 
 export const getEvents = (metroArea: string | null = null) => {
     return async (dispatch: Dispatch<Action>) => {
