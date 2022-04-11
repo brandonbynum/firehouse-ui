@@ -22,7 +22,7 @@ export const useErrorMessages = () => {
             if (stateValue?.error) {
                 messageList.push({
                     type: keyName,
-                    message: `Failed to retrieve ${keyName}`,
+                    message: `uhhhh something is broken...`,
                 });
             }
         });
