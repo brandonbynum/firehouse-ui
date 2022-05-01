@@ -13,18 +13,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: 🚀 Release
-        uses: cycjimmy/semantic-release-action@v2
-        id: semantic
+      # - name: 🚀 Release
+      #   uses: cycjimmy/semantic-release-action@v2
+      #   id: semantic
+      #   with:
+      #     semantic_version: 18
+      #     extra_plugins: |
+      #       @semantic-release/changelog@6
+      #       @semantic-release/git@10
+      #       conventional-changelog-conventionalcommits@4.6.1
+      - name: Release
+        if: github.event_name == 'push' #&& github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           semantic_version: 18
-          extra_plugins: |
-            @semantic-release/changelog@6
-            @semantic-release/git@10
-            conventional-changelog-conventionalcommits@4.6.1
-      # - name: Release
-      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: yarn semantic-release
+        run: yarn semantic-release
       
