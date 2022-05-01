@@ -1,9 +1,10 @@
 name: Workflow Test
 
 on:
+  pull_request:
+    branches: [develop, main]
   push:
-    branches:
-      - feature/github-actions
+    branches: [develop, main]
 
 jobs:
   run-github-actions:
@@ -11,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Log Repo
-        run: |
-          echo $GITHUB_REPOSITORY
+      - name: Create a Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: yarn semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
