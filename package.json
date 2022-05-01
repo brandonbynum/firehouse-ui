@@ -27,8 +27,18 @@
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "sass": "^1.46.0",
+    "semantic-release": "^19.0.2",
     "typescript": "^4.5.4",
     "web-vitals": "^2.1.0"
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/git"
+  ],
+  "release": {
+    "branches": ["main"],
+    "repositoryUrl": "https://github.com/munyb/firehouse-ui"
   },
   "scripts": {
     "start": "react-scripts start",
