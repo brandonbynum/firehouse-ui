@@ -1,0 +1,26 @@
+@import 'styles/colors.scss';
+
+#event-list {
+    overflow-y: scroll;
+    scrollbar-width: none;
+};
+
+table {
+    table-layout: fixed;
+    overflow-y: scroll;
+}
+
+a:hover {
+    color: $white!important;
+}
+
+.event-summary {
+    // border: 2px solid $light;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+// .event-summary:hover {
+//     border: 2px solid $light!important;
+// }

@@ -71,26 +71,21 @@ const Selector = ({
                 <div id="list-overlay">
                     {/* 
                         TODO: Fade to new color on hover
-                    */}
-                    <div className="d-flex justify-content-end p-4 mb-3">
-                        <Button
-                            className="close-list bg-light text-primary border-none"
-                            onClick={handleShowOptions}
-                        >
-                            &times;
-                        </Button>
-                    </div>
-
-                    {/* 
-                        TODO: Change color of selected item in list
                         TODO: Upon option hover, fade to new color
                     */}
                     <div className="mx-auto p-3" id="list-table">
                         <ListGroup className="">
+                            <ListGroup.Item
+                                className={`option pointer p-3 text-primary text-center hover-dark bg-danger`}
+                                key={`option-exit`}
+                                onClick={handleShowOptions}
+                            >
+                                &times;
+                            </ListGroup.Item>
                             {listOptions.map((name: string, index: number) => {
                                 return (
                                     <ListGroup.Item
-                                        className={`pointer p-3 text-primary text-center
+                                        className={`option pointer p-3 text-primary text-center hover-dark
                                             ${
                                                 selected === name
                                                     ? 'bg-dark'
