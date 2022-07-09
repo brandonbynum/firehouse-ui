@@ -4,7 +4,7 @@ import { useActions } from 'hooks/useActions';
 import useIsLoading from 'hooks/useIsLoading';
 import { useTypedSelector } from 'hooks/useTypedSelector';
 
-import EventList from 'components/EventsList/EventList';
+import EventList from 'components/Pages/EventSearch/EventsList/EventList';
 import MetroSelector from 'components/MetroSelector/MetroSelector';
 
 import './eventSearch.scss';
