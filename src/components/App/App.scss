@@ -1,9 +1,5 @@
 @import 'styles/colors.scss';
 
-.app {
-
-};
-
 #page-content {
     max-width: 844px;
 };
@@ -15,3 +11,16 @@
 .pointer {
     cursor: pointer;
 };
+
+@font-face {
+    font-family: "Cairo";
+    src: local("Cairo"), url(../../fonts/Cairo/static/Cairo-Regular.ttf) format("truetype")
+}
+
+.app {
+    font-family: Cairo;
+}
+
+.hover-dark:hover {
+    background-color: $dark!important
+}
