@@ -15,6 +15,10 @@ const EventList = () => {
                 </div>
             ) : (
                 data.map((event, eventIndex: number) => {
+                    const date = event.end_date
+                        ? `${event.date} - ${event.end_date}`
+                        : event.date;
+
                     return (
                         <div
                             className="event-summary text-white mb-3 p-3 bg-light hover-dark rounded"
@@ -34,7 +38,7 @@ const EventList = () => {
                                         xs={5}
                                         className="d-flex justify-content-end"
                                     >
-                                        <h6>{event.date}</h6>
+                                        <h6>{date}</h6>
                                     </Col>
                                 </Row>
                                 {event.event_name !== event.artist.name && (
