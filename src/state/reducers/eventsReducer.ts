@@ -16,6 +16,7 @@ export interface IEvent {
     artist: IArtist;
     genres: string[];
     date: string;
+    end_date: string;
     tickets_url: string;
     type: string;
     venue: string;
